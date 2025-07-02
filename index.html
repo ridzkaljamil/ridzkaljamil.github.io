@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIDZ - Portfolio Website</title>
+    <link rel="icon" href="assets/images/favicon/favicon.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+  <body class="dark:bg-gray-900 dark:text-gray-100">
+    <!-- Splash Screen -->
+<div id="splashScreen" class="splash-screen opacity-0 pointer-events-none transition-opacity duration-700 flex items-center justify-center flex-col">
+  <h1 id="splashText" class="text-4xl font-semibold text-white mb-6 animate-fade-in-up">Welcome!</h1>
+  <div class="loading-bar">
+    <div id="loadingProgress" class="loading-progress"></div>
+  </div>
+</div>
+
+
+    <!-- 3D Background -->
+    <div class="canvas-container" id="canvasContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-md">
+      <div class="container mx-auto px-6 py-3">
+        <div class="flex justify-between items-center">
+          <a href="#home" class="text-2xl font-bold gradient-text">RIDZ</a>
+
+          <!-- Mobile menu button -->
+          <div class="flex items-center space-x-4">
+            <div class="relative inline-block w-10 mr-2 align-middle select-none">
+              <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+              <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="nav-link text-gray-300 hover:text-white">Home</a>
+            <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+            <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
+            <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+            <a href="#portfolio" class="nav-link text-gray-300 hover:text-white">Creative</a>
+            <a href="#experience" class="nav-link text-gray-300 hover:text-white">Experience</a>
+            <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+          <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-white">Home</a>
+          <a href="#about" class="block px-3 py-2 text-gray-300 hover:text-white">About</a>
+          <a href="#skills" class="block px-3 py-2 text-gray-300 hover:text-white">Skills</a>
+          <a href="#projects" class="block px-3 py-2 text-gray-300 hover:text-white">Projects</a>
+          <a href="#portfolio" class="block px-3 py-2 text-gray-300 hover:text-white">Creative</a>
+          <a href="#experience" class="block px-3 py-2 text-gray-300 hover:text-white">Experience</a>
+          <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-white">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="min-h-screen flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6 py-12 md:py-24">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+              <h1 class="text-4xl md:text-6xl font-bold mb-4 card-hover">Hi, I'm <span class="gradient-text">Ridzkal Jamil</span></h1>
+              <h2 class="text-2xl md:text-3xl font-semibold mb-6">Fullstack Developer & Photographer</h2>
+              <p class="text-gray-400 mb-8 max-w-lg">I build innovative web solutions and capture moments that tell stories. Combining technical expertise with creative vision to deliver exceptional digital experiences.</p>
+              <div class="flex flex-wrap gap-4">
+                <a href="#contact" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-medium transition duration-300 card-hover">Hire Me</a>
+                <a href="https://drive.usercontent.google.com/download?id=13bnpcDdHBtpkaC6fdCAO1SomeoFWBAgs&export=download&authuser=0" class="px-6 py-3 border border-gray-600 hover:border-blue-500 rounded-md text-white font-medium transition duration-300 card-hover">Download CV</a>
+              </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center ">
+              <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <div class="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-xl "></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-500 photo-card floating ">
+                  <!-- Placeholder for profile image -->
+                  <img src="assets/images/profile/profile.png" alt="Foto Profil" class="w-full h-full object-cover card-hover" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-12 section-title">About Me</h2>
+
+          <div class="flex flex-col lg:flex-row gap-12">
+            <div class="lg:w-1/2">
+              <h3 class="text-2xl font-semibold mb-4 gradient-text">Personal Story</h3>
+              <p class="text-gray-300 mb-6">
+                From a young age, I've been fascinated by both technology and visual arts. What started as a hobby in photography evolved into a professional pursuit, while my passion for problem-solving led me to web development.
+              </p>
+              <p class="text-gray-300 mb-6">
+                I believe that great digital experiences come from the perfect blend of technical precision and artistic sensibility. This dual expertise allows me to approach projects with a unique perspective, ensuring both functionality
+                and aesthetic appeal.
+              </p>
+              <p class="text-gray-300">When I'm not coding or behind the camera, you can find me exploring new technologies, attending tech meetups, or hiking to find the perfect landscape shot.</p>
+
+              <div class="mt-8">
+                <h3 class="text-2xl font-semibold mb-4 gradient-text">Education</h3>
+                <div class="space-y-6">
+                  <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                    <h4 class="text-xl font-medium mb-2">Universitas Pelita Bangsa</h4>
+                    <p class="text-gray-400 mb-1">Bachelor's degree, Informatics Engineering</p>
+                    <p class="text-blue-400">September 2023 - September 2027</p>
+                  </div>
+                  <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                    <h4 class="text-xl font-medium mb-2">SMK Negeri 1 Cikarang Barat</h4>
+                    <p class="text-gray-400 mb-1">SMK, Teknik Komputer dan Jaringan</p>
+                    <p class="text-blue-400">2017 - 2020</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:w-1/2">
+              <h3 class="text-2xl font-semibold mb-4 gradient-text">What I Offer</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="text-blue-500 text-3xl mb-4">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <h4 class="text-xl font-medium mb-2">Web Development</h4>
+                  <p class="text-gray-300">Custom web applications built with modern technologies, optimized for performance and user experience.</p>
+                </div>
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="text-blue-500 text-3xl mb-4">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <h4 class="text-xl font-medium mb-2">Responsive Design</h4>
+                  <p class="text-gray-300">Websites that look and function perfectly on any device, from desktop to mobile.</p>
+                </div>
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="text-blue-500 text-3xl mb-4">
+                    <i class="fas fa-camera"></i>
+                  </div>
+                  <h4 class="text-xl font-medium mb-2">Photography</h4>
+                  <p class="text-gray-300">Professional photography services for portraits, events, products, and landscapes.</p>
+                </div>
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="text-blue-500 text-3xl mb-4">
+                    <i class="fas fa-paint-brush"></i>
+                  </div>
+                  <h4 class="text-xl font-medium mb-2">Content Creative Solutions</h4>
+                  <p class="text-gray-300">Unique visual concepts that enhance brand identity and user engagement.</p>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <h3 class="text-2xl font-semibold mb-4 gradient-text">Core Values</h3>
+                <div class="flex flex-wrap gap-4">
+                  <span class="px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 card-hover">Innovation</span>
+                  <span class="px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 card-hover">Quality</span>
+                  <span class="px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 card-hover">Creativity</span>
+                  <span class="px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 card-hover">Reliability</span>
+                  <span class="px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 card-hover">Continuous Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-12 section-title">Skills & Achievements</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 class="text-2xl font-semibold mb-6 gradient-text">Technical Skills</h3>
+
+              <div class="space-y-6">
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium">HTML & CSS</span>
+                    <span>95%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium">JavaScript</span>
+                    <span>85%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium">PHP</span>
+                    <span>80%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium">CodeIgniter</span>
+                    <span>75%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium">Python</span>
+                    <span>70%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="text-2xl font-semibold mt-12 mb-6 gradient-text">Tools & Frameworks</h3>
+              <div class="flex flex-wrap gap-4">
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Bootstrap</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Tailwind CSS</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Figma</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Photoshop</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Lightroom</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">Git</span>
+                <span class="px-4 py-2 bg-gray-700 rounded-md card-hover">VS Code</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-semibold mb-6 gradient-text">Certifications</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Certificate 1 -->
+  <div class="relative overflow-hidden rounded-lg bg-gray-700/50 card-hover group">
+    <img src="assets/images/certificates/html-css.png" alt="HTML & CSS Certificate" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+      <h4 class="text-xl font-semibold text-white mb-2">HTML & CSS Course Certificate</h4>
+      <p class="text-gray-300 text-sm mb-1">Modern HTML5 and CSS3 Techniques</p>
+      <span class="text-sm text-blue-400">Issued: 2025</span>
+    </div>
+  </div>
+
+  <!-- Certificate 2 -->
+  <div class="relative overflow-hidden rounded-lg bg-gray-700/50 card-hover group">
+    <img src="assets/images/certificates/networking.png" alt="Networking Certificate" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+      <h4 class="text-xl font-semibold text-white mb-2">Networking Basics Certificate</h4>
+      <p class="text-gray-300 text-sm mb-1">Computer networking Fundamentals</p>
+      <span class="text-sm text-blue-400">Issued: 2024</span>
+    </div>
+  </div>
+
+  <!-- Certificate 3 -->
+  <div class="relative overflow-hidden rounded-lg bg-gray-700/50 card-hover group">
+    <img src="assets/images/certificates/javascript.png" alt="JavaScript Badge" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+      <h4 class="text-xl font-semibold text-white mb-2">Basic JavaScript Badge</h4>
+      <p class="text-gray-300 text-sm mb-1">JavaScript Fundamentals & DOM</p>
+      <span class="text-sm text-blue-400">Issued: 2025</span>
+    </div>
+  </div>
+  <!-- Certificate 4 -->
+  <div class="relative overflow-hidden rounded-lg bg-gray-700/50 card-hover group">
+    <img src="assets/images/certificates/networking1.png" alt="JavaScript Badge" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+      <h4 class="text-xl font-semibold text-white mb-2">Cisco Networking</h4>
+      <p class="text-gray-300 text-sm mb-1">Cisco Networking Fundamentals</p>
+      <span class="text-sm text-blue-400">Issued: 2024</span>
+    </div>
+  </div>
+</div>
+                <div class="text-center mt-12">
+  <button onclick="openCertificateModal()" class="px-6 py-3 border border-blue-500 hover:bg-blue-500/10 rounded-md text-blue-500 font-medium transition duration-300 inline-flex items-center card-hover">
+    View All
+  </button>
+</div>
+
+                <!-- Modal Gallery -->
+<div id="certificateModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ease-in-out">
+  <div class="bg-gray-800 p-6 rounded-lg max-w-5xl w-full relative scale-95 opacity-0 transition-all duration-300 ease-in-out modal-content">
+    <button id="closeModal" class="absolute top-2 right-3 text-gray-400 hover:text-white text-xl">&times;</button>
+    <h3 class="text-2xl font-bold mb-6 text-center text-white">All Certificates</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      
+      <!-- Certificate with link -->
+      <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/html-css.png" alt="HTML CSS" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">HTML & CSS Certificate</div>
+      </a>
+
+      <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/networking.png" alt="Networking" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">Networking Basics</div>
+      </a>
+
+      <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/javascript.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">JavaScript Badge</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/networking1.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">Cisco Networking</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/algoritma.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">Algoritma dan Pemograman</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/cli.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">CLI</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/computer-programming.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">Computer Programming</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/javascript1.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">JavaScript Certificate</div>
+        </a>
+
+        <a href="#" target="_blank" class="group overflow-hidden rounded-lg relative transition transform hover:scale-105">
+        <img src="assets/images/certificates/html-css1.png" alt="JavaScript" class="w-full h-auto rounded" />
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm transition duration-300">HTML & CSS Course</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-gray-800/50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-12 section-title">Development Projects</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Project 1 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/rar.png" alt="RAR Calculator" class="w-full h-full object-cover" />
+</div>
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">RAR Calculator</h3>
+      <p class="text-gray-400 mb-4">A responsive scientific calculator built with Java and MVC architecture on Android Studio.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Java</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Android SDK</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MVC</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Android Studio</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/Team7_ScienceCalculator_App" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/booktrack.png" alt="BookTrack Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">BookTrack</h3>
+      <p class="text-gray-400 mb-4">A web application for managing books with login authentication using CodeIgniter Shield.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CodeIgniter</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Bootstrap 5</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">PHP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MySQL</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/booktrack" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/rarc-landing.png" alt="RAR Landing Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Landing Page - RAR Calculator</h3>
+      <p class="text-gray-400 mb-4">A sleek landing page using Tailwind CSS with responsive design and animation.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">JavaScript</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">GSAP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Tailwind CSS</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/rarc-landingpage" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 4-->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/inventory.png" alt="Inventory Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Inventory Management System</h3>
+      <p class="text-gray-400 mb-4">A web-based application designed to track, manage, and organize product stock efficiently.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">PHP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MySQL</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/Team1_Web_SistemTerdistribusi" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 5 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/porto.png" alt="First Porto Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Responsive Portfolio</h3>
+      <p class="text-gray-400 mb-4">My first personal portfolio website using Bootstrap 5.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Bootstrap 5</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/first-portfolio-website" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 6 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/parlay.png" alt="Parlay Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Parlay Spin Game Simulator</h3>
+      <p class="text-gray-400 mb-4">Educational simulation of online gambling manipulation and server-side control.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">JavaScript</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">WebSocket</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/parlay-simulation" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+<!-- Add more project cards as needed -->
+
+</div>
+<!-- View All Projects Button -->
+    <div class="text-center mt-12">
+      <button id="openProjectModal" class="px-6 py-3 border border-blue-500 hover:bg-blue-500/10 rounded-md text-blue-500 font-medium transition duration-300 inline-flex items-center">
+        View All Projects</i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: All Projects -->
+<div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ease-in-out">
+  <div class="bg-gray-800 p-6 rounded-lg max-w-7xl w-full relative scale-95 opacity-0 transition-all duration-300 transform modal-content">
+    <button id="closeProjectModal" class="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+    <h3 class="text-2xl font-bold text-center mb-6 text-white">All Development Projects</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[70vh] overflow-y-auto pr-2">
+      <!-- Copy the same 6 project cards here -->
+      <!-- Project 1 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/rar.png" alt="RAR Calculator" class="w-full h-full object-cover" />
+</div>
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">RAR Calculator</h3>
+      <p class="text-gray-400 mb-4">A responsive scientific calculator built with Java and MVC architecture on Android Studio.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Java</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Android SDK</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MVC</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Android Studio</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/Team7_ScienceCalculator_App" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/booktrack.png" alt="BookTrack Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">BookTrack</h3>
+      <p class="text-gray-400 mb-4">A web application for managing books with login authentication using CodeIgniter Shield.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CodeIgniter</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Bootstrap 5</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">PHP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MySQL</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/booktrack" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/rarc-landing.png" alt="RAR Landing Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Landing Page - RAR Calculator</h3>
+      <p class="text-gray-400 mb-4">A sleek landing page using Tailwind CSS with responsive design and animation.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">JavaScript</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">GSAP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Tailwind CSS</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/rarc-landingpage" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 4-->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/inventory.png" alt="Inventory Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Inventory Management System</h3>
+      <p class="text-gray-400 mb-4">A web-based application designed to track, manage, and organize product stock efficiently.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">PHP</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">MySQL</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/Team1_Web_SistemTerdistribusi" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 5 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/porto.png" alt="First Porto Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Responsive Portfolio</h3>
+      <p class="text-gray-400 mb-4">My first personal portfolio website using Bootstrap 5.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Bootstrap 5</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/first-portfolio-website" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 6 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/parlay.png" alt="Parlay Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">Parlay Spin Game Simulator</h3>
+      <p class="text-gray-400 mb-4">Educational simulation of online gambling manipulation and server-side control.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">JavaScript</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">HTML</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">CSS</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">WebSocket</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/parlay-simulation" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 7 -->
+  <div class="bg-gray-700/50 rounded-lg overflow-hidden card-hover transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-48 overflow-hidden">
+  <img src="assets/images/projects/yolo.png" alt="YOLO Screenshot" class="w-full h-full object-cover" />
+</div>
+
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2">YOLO Webcam Object Detection Project</h3>
+      <p class="text-gray-400 mb-4">Real-time object detection implementation using YOLOv4 model with webcam as input.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Python</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">Numpy</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">OpenCV</span>
+        <span class="text-xs px-2 py-1 bg-blue-600/20 rounded text-blue-400">YOLO Framework</span>
+      </div>
+      <div class="flex justify-center gap-4 mt-4">
+        <a href="https://github.com/ridzkaljamil/yolo-object-detection" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="GitHub Repo">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="#" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Live Demo">
+          <i class="fas fa-external-link-alt text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+      <!-- Add more project cards as needed -->
+    </div>
+  </div>
+</div>
+
+      <!-- Creative Portfolio Section -->
+<section id="portfolio" class="py-20">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-12 section-title">Creative Portfolio</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Photo Item - Clickable with modal gallery -->
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('ayangi')">
+        <img src="assets/images/portfolio/ayangi.jpg" alt="Women Potrait" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Women Potrait</h3>
+            <p class="text-gray-300 text-sm">Potrait of Ayangi Al Safitri</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('fani')">
+        <img src="assets/images/portfolio/fani.jpg" alt="Graduation Photoshoot" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Graduation Photoshoot</h3>
+            <p class="text-gray-300 text-sm">Graduation Photoshoot of Fani Fajriyanti</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('dwinda')">
+        <img src="assets/images/portfolio/dwinda1.jpg" alt="Personal Photoshoot" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Personal Photoshoot</h3>
+            <p class="text-gray-300 text-sm">Photoshoot of Dwinda Safitri</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('rayhan')">
+        <img src="assets/images/portfolio/rayhan.jpg" alt="Man Photoshot" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Man Photoshot</h3>
+            <p class="text-gray-300 text-sm">Potrait of Rayhan Putra Jafandi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('jete')">
+        <img src="assets/images/portfolio/jete.jpg" alt="Brand Photoshoot" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Brand Photoshoot</h3>
+            <p class="text-gray-300 text-sm">Photoshoot of Camera Backpack from "JETE"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-lg photo-card h-64 cursor-pointer group" onclick="openGallery('lifia')">
+        <img src="assets/images/portfolio/lifia.jpg" alt="Graduation Photoshoot" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div>
+            <h3 class="text-white font-bold">Graduation Photoshoot</h3>
+            <p class="text-gray-300 text-sm">Graduation Photoshoot of Lifia & Zahra</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://drive.usercontent.google.com/download?id=1VJ6D8fFmKWOfH3npT7v7R5BHdmKjZ9EW&export=download&authuser=2" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-medium transition duration-300 inline-flex items-center"> 
+        <i class="fas fa-download mr-2"></i> Download Creative Portfolio 
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Gallery (empty structure to be filled dynamically) -->
+<div id="photoModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center">
+  <div class="bg-gray-900 p-6 rounded-lg max-w-4xl w-full relative scale-95 opacity-0 transition-all duration-300 modal-content">
+    <button id="closePhotoModal" class="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+    <h3 id="modalGalleryTitle" class="text-xl font-semibold mb-4 text-center text-white"></h3>
+    <div id="modalGalleryContent" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto pr-2">
+      <!-- dynamically injected images -->
+    </div>
+  </div>
+</div>
+
+      <!-- Work Experience Section -->
+      <section id="experience" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-12 section-title">Work Experience</h2>
+
+          <div class="relative">
+            <div class="timeline pl-8 md:pl-16 space-y-12">
+              <!-- Experience 1 -->
+              <div class="relative timeline-item">
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <h3 class="text-xl font-bold">Injection Molding Operator</h3>
+                    <span class="text-blue-400">2023 - Present</span>
+                  </div>
+                  <p class="text-blue-400 mb-4">PT NOK Indonesia</p>
+                  <p class="text-gray-400 mb-4">Running the production process by operating a 50-ton capacity Curing Press Machine to achieve the production target according to the established company SOP.</p>
+                  <ul class="list-disc pl-5 text-gray-400 space-y-1">
+                    <li>Checking the machine and materials, filling out the checksheet according to SOP and Job Tag before starting the production process.</li>
+                    <li>Performing production processes on the Curing Machine (Loading, Unloading, Deburring, Screening).</li>
+                    <li>Completing the Curing Report (Job Tag, Daily Activity Report, Defective & Packing Record) after finishing the production process.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Experience 2 -->
+              <div class="relative timeline-item">
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <h3 class="text-xl font-bold">Stamping Production Operator</h3>
+                    <span class="text-blue-400">2021 - 2022</span>
+                  </div>
+                  <p class="text-blue-400 mb-4">PT Fuji Technica Indonesia</p>
+                  <p class="text-gray-400 mb-4">Running the production process by operating the Hitachi Zosen Fukui Stamping Press H&F machine with a capacity of 1200 tons, 800 tons, or 600 tons to achieve the GSPH target according to the established company SOP.</p>
+                  <ul class="list-disc pl-5 text-gray-400 space-y-1">
+                    <li>Checking the machine and materials, filling out the checksheet according to SOP before starting the production process.</li>
+                    <li>Performing die changes and setting according to SOP for the next production process.</li>
+                    <li>Conducting Total Productive Maintenance (TPM) and 5S, then filling out the checksheet.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Experience 3 -->
+              <div class="relative timeline-item">
+                <div class="bg-gray-700/50 p-6 rounded-lg card-hover">
+                  <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <h3 class="text-xl font-bold">Officer Production Control</h3>
+                    <span class="text-blue-400">2020 - 2021</span>
+                  </div>
+                  <p class="text-blue-400 mb-4">PT Shindengen Indonesia</p>
+                  <p class="text-gray-400 mb-4">Controlling the receipt, storage, and shipment of Finished Goods to meet customer production needs.</p>
+                  <ul class="list-disc pl-5 text-gray-400 space-y-1">
+                    <li>Assy Entry: Receiving or retrieving goods from the Production section, placing them according to the established layout, and entering Assy Entry reports into Microsoft Excel.</li>
+                    <li>Preparing goods for customer delivery by inputting initial lot numbers, item types, and required quantities into the Picking List.</li>
+                    <li>Conducting the delivery process to the customer and checking documents or waybills from the beginning to the end of the delivery process.</li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
+
+          <div class="flex flex-col lg:flex-row gap-12">
+            <div class="lg:w-1/2">
+              <h3 class="text-2xl font-semibold mb-6 gradient-text">Contact Information</h3>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="text-blue-500 text-xl mr-4 mt-1">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Address</h4>
+                    <p class="text-gray-400">Kartika Wanasari 2, Blok HD/9, RT.001 RW.036, Kec.Cibitung, Kab,Bekasi, Jawa Barat, 17520</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="text-blue-500 text-xl mr-4 mt-1">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Phone</h4>
+                    <p class="text-gray-400">+6285695655854</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="text-blue-500 text-xl mr-4 mt-1">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Email</h4>
+                    <p class="text-gray-400">ridzkaljamil@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="text-2xl font-semibold mt-12 mb-6 gradient-text">Social Media</h3>
+              <div class="flex space-x-4">
+                <a href="https://api.whatsapp.com/send/?phone=6285695655854&text&type=phone_number&app_absent=0" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/ridzkaljamiil/" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@ridzkaljamil" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://github.com/ridzkaljamil/" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ridzkaljamil/" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.behance.net/ridzkaljamil" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition duration-300">
+                  <i class="fab fa-behance"></i>
+                </a>
+              </div>
+
+              <div class="mt-12 bg-gray-700/50 p-6 rounded-lg card-hover">
+                <h3 class="text-xl font-semibold mb-4 gradient-text">Availability</h3>
+                <p class="text-gray-400 mb-4">I'm currently available for freelance projects and full-time opportunities. Feel free to reach out for collaborations or just to say hello!</p>
+                <p class="text-gray-400">Response time: Usually within 24 hours</p>
+              </div>
+            </div>
+
+            <div class="lg:w-1/2">
+              <h3 class="text-2xl font-semibold mb-6 gradient-text">Send Me a Message</h3>
+
+              <form action="https://formspree.io/f/mgvyqavw" method="POST" class="space-y-6">
+  <div>
+    <label for="name" class="block mb-2 font-medium">Your Name</label>
+    <input type="text" id="name" name="name" required
+      class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500"
+      placeholder="Enter your name" />
+  </div>
+  <div>
+    <label for="email" class="block mb-2 font-medium">Email Address</label>
+    <input type="email" id="email" name="email" required
+      class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500"
+      placeholder="Enter your email" />
+  </div>
+  <div>
+    <label for="subject" class="block mb-2 font-medium">Subject</label>
+    <input type="text" id="subject" name="subject" required
+      class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500"
+      placeholder="What's this about?" />
+  </div>
+  <div>
+    <label for="message" class="block mb-2 font-medium">Message</label>
+    <textarea id="message" name="message" rows="5" required
+      class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500"
+      placeholder="Your message here..."></textarea>
+  </div>
+  <button type="submit"
+    class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-medium transition duration-300 w-full">
+    Send Message
+  </button>
+</form>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/80 py-8">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <a href="#home" class="text-2xl font-bold gradient-text">RIDZ</a>
+            <p class="text-gray-400 mt-2">Fullstack Developer & Photographer</p>
+          </div>
+          <div class="flex space-x-6">
+            <a href="#home" class="text-gray-400 hover:text-white">Home</a>
+            <a href="#about" class="text-gray-400 hover:text-white">About</a>
+            <a href="#projects" class="text-gray-400 hover:text-white">Projects</a>
+            <a href="#contact" class="text-gray-400 hover:text-white">Contact</a>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
+          <p>&copy; 2025 Ridzkal Jamil. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/js/script.js"></script>
+  </body>
+</html>
