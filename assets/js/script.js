@@ -317,29 +317,30 @@ const galleryPhotos = {
     }, 300);
   });
 
-  function openCertificateModal() {
-  const modal = document.getElementById("certificateModal");
-  const content = modal.querySelector(".modal-content");
+function openCertificateModal() {
+    const modal = document.getElementById("certificateModal");
+    const content = modal.querySelector(".modal-content");
 
-  modal.classList.remove("hidden");
-  document.body.classList.add("noscroll");
+    modal.classList.remove("hidden");
+    document.body.classList.add("noscroll");
 
-  setTimeout(() => {
-    content.classList.remove("scale-95", "opacity-0");
-    content.classList.add("scale-100", "opacity-100");
-  }, 10);
-}
-function closeCertificateModal() {
-  const modal = document.getElementById("certificateModal");
-  const content = modal.querySelector(".modal-content");
+    setTimeout(() => {
+      content.classList.remove("scale-95", "opacity-0");
+      content.classList.add("scale-100", "opacity-100");
+    }, 10);
+  }
 
-  content.classList.remove("scale-100", "opacity-100");
-  content.classList.add("scale-95", "opacity-0");
+  function closeCertificateModal() {
+    const modal = document.getElementById("certificateModal");
+    const content = modal.querySelector(".modal-content");
 
-  setTimeout(() => {
-    modal.classList.add("hidden");
-    document.body.classList.remove("noscroll");
-  }, 300);
-}
+    content.classList.remove("scale-100", "opacity-100");
+    content.classList.add("scale-95", "opacity-0");
 
-document.getElementById("closeModal").addEventListener("click", closeCertificateModal);
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      document.body.classList.remove("noscroll");
+    }, 300);
+  }
+
+  document.getElementById("closeModal").addEventListener("click", closeCertificateModal);
